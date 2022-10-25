@@ -1,0 +1,61 @@
+using UnityEngine;
+using System.Collections;
+using dnSR_Coding.Utilities;
+using NaughtyAttributes;
+
+namespace dnSR_Coding
+{
+    ///<summary> #SCRIPTNAME# description <summary>
+    [Component("#SCRIPTNAME#", "")]
+    public class #SCRIPTNAME# : MonoBehaviour, IValidatable, IDebuggable
+    {
+        //[Title( "TITLE", 12, "white" )]
+
+        // Variables
+
+        public bool IsValid { get; private set; }
+
+        #region Debug
+
+        [Space( 10 ), HorizontalLine( .5f, EColor.Gray )]
+        [SerializeField] private bool _isDebuggable = true;
+        public bool IsDebuggable => _isDebuggable;
+
+        #endregion
+
+        #region Enable, Disable
+
+        void OnEnable() { }
+
+        void OnDisable() { }
+
+        #endregion
+
+        void Awake() => Init();
+        void Init()
+        {
+            // Set all datas that need it at the start of the game
+            GetLinkedComponents();
+        }
+
+        void GetLinkedComponents()
+        {
+            // Put all the get component here, it'll be easier to follow what we need and what we collect.
+        }
+
+        #region OnValidate
+
+#if UNITY_EDITOR
+
+        private void OnValidate()
+        {
+            // Default value for IsValid, change it as you need to.
+            IsValid = true;
+
+            GetLinkedComponents();
+        }
+#endif
+
+        #endregion
+    }
+}
